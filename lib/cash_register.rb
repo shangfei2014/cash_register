@@ -6,6 +6,8 @@ class CashRegister
         total_price += no_discount(item)
       elsif item.discount == 'buy_2_free_1'
         total_price += buy_2_free_1(item)
+      elsif item.discount == 'off_percent_5'
+        total_price += off_percent_5(item)
       end
     end
     total_price
@@ -20,5 +22,9 @@ class CashRegister
 
   def self.no_discount(item)
     item.price_per_unit * item.count
+  end
+
+  def self.off_percent_5(item)
+    item.price_per_unit * item.count * 0.95
   end
 end

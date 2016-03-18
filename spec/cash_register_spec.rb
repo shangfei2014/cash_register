@@ -18,7 +18,9 @@ describe 'CashRegister' do
     end
 
     context 'off_percent_5' do
-
+      let(:item_list) { [double('item_1', price_per_unit: 1.00, count: 3, discount: 'off_percent_5'),
+                          double('item_2', price_per_unit: 2.50, count: 2, discount: 'off_percent_5')] }
+      specify { expect(subject).to eq(7.60) }
     end
   end
 end
