@@ -1,4 +1,6 @@
 class Item
+  attr_accessor :name, :unit, :price_per_unit, :count, :discount
+
   def initialize(name, unit, price_per_unit, count, discount)
     @name = name
     @unit = unit
@@ -17,6 +19,8 @@ class Item
     end
     total.round(2)
   end
+
+  private
 
   def buy_2_free_1
     if @count / 3 <= 0
