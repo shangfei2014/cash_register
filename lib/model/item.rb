@@ -1,5 +1,7 @@
 class Item
-  def initialize(price_per_unit, count, discount)
+  def initialize(name, unit, price_per_unit, count, discount)
+    @name = name
+    @unit = unit
     @price_per_unit = price_per_unit
     @count = count
     @discount = discount

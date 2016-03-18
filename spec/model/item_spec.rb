@@ -3,7 +3,7 @@ require_relative '../../lib/model/item'
 
 describe 'Item' do
     describe '#price' do
-      subject { Item.new(price_per_unit, count, discount).price }
+      subject { Item.new('可乐', '瓶', price_per_unit, count, discount).price }
 
       context 'no discount' do
         let(:price_per_unit) { 1.00 }
