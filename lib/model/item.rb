@@ -9,15 +9,15 @@ class Item
     @discount = discount
   end
 
-  def price
+  def calculate_result
     if @discount.empty?
-      total = no_discount
+      result = no_discount
     elsif @discount == 'buy_2_free_1'
-      total = buy_2_free_1
+      result = buy_2_free_1
     elsif @discount == 'off_percent_5'
-      total = off_percent_5
+      result = off_percent_5
     end
-    total.round(2)
+    result
   end
 
   private
@@ -26,14 +26,24 @@ class Item
     if @count / 3 <= 0
       return no_discount
     end
-    (@count - @count / 3) * @price_per_unit
+    saved_count = @count / 3
+    saved_price = saved_count * @price_per_unit
+    total = (@count - saved_count) * @price_per_unit
+    { total: format_price(total), saved_price: format_price(saved_price), saved_count: saved_count}
   end
 
   def no_discount
-    @price_per_unit * @count
+    {total: format_price(@price_per_unit * @count), saved_price: '0.00', saved_count: 0 }
   end
 
   def off_percent_5
-    @price_per_unit * @count * 0.95
+    origin = @price_per_unit * @count
+    total = origin * 0.95
+    saved_price = origin - total
+    { total: format_price(total), saved_price: format_price(saved_price), saved_count: 0}
+  end
+
+  def format_price(price)
+    '%.2f' % price
   end
 end
