@@ -3,12 +3,6 @@ require_relative '../lib/cash_register'
 require_relative '../lib/model/item'
 
 describe 'CashRegister' do
-  describe '#calculate' do
-    subject { CashRegister.calculate(item_list) }
-    let(:item_list) { [double('item_1', calculate_result: { total: '6.00', saved_price: '0.00', saved_count: 0 }),
-                       double('item_2', calculate_result: { total: '3.50', saved_price: '0.00', saved_count: 0 })] }
-    specify { expect(subject).to eq({ total: 9.5, saved_price: 0.0, saved_count: 0 }) }
-  end
 
   describe '#print' do
     subject { CashRegister.print_text(item_list) }
