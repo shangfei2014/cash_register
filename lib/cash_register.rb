@@ -8,9 +8,9 @@ class CashRegister
     receipt << "***<没钱赚商店>购物清单***\n"
     item_list.each do |item|
       calculate_result = item.calculate_result
-      receipt << "名称：#{item.name}，数量：#{item.count}#{item.unit}，单价：#{ format_price(item.price_per_unit) }(元)，小计：#{calculate_result[:total]}(元)\n"
-      total_saved_price += calculate_result[:saved_price].to_f
-      total_price += calculate_result[:total].to_f
+      receipt << "名称：#{item.name}，数量：#{item.count}#{item.unit}，单价：#{format_price(item.price_per_unit)}(元)，小计：#{format_price(item.total)}(元)\n"
+      total_saved_price += calculate_result[:saved_price]
+      total_price += calculate_result[:total]
       if calculate_result[:saved_count] > 0
         saved_list.push(item)
       end

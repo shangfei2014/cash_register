@@ -1,6 +1,6 @@
 require 'rspec'
 require_relative '../lib/cash_register'
-require_relative '../lib/model/item'
+require_relative '../lib/model/item_line'
 
 describe 'CashRegister' do
 
@@ -8,7 +8,7 @@ describe 'CashRegister' do
     subject { CashRegister.print_text(item_list) }
     context 'no discount' do
       let(:item_list) { [double('item_1', name: '可口可乐', unit: '瓶', price_per_unit: 1.0, count: 2, discount: '',
-                                calculate_result: { total: '2.00', saved_price: '0.00', saved_count: 0 })] }
+                                calculate_result: { total: 2.00, saved_price: 0.00, saved_count: 0 }, total: 2.00)] }
       let(:output) do
         <<-eos
 ***<没钱赚商店>购物清单***
@@ -23,7 +23,7 @@ describe 'CashRegister' do
 
     context 'buy_2_free_1' do
       let(:item_list) { [double('item_1', name: '可口可乐', unit: '瓶', price_per_unit: 1.0, count: 3, discount: 'buy_2_free_1',
-                                calculate_result: { total: '2.00', saved_price: '1.00', saved_count: 1 })] }
+                                calculate_result: { total: 2.00, saved_price: 1.00, saved_count: 1 }, total: 2.00)] }
       let(:output) do
         <<-eos
 ***<没钱赚商店>购物清单***
