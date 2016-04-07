@@ -30,10 +30,6 @@ class ItemLine
     @item.price_per_unit
   end
 
-  def total
-    calculate_result[:total]
-  end
-
   private
 
   def buy_2_free_1
